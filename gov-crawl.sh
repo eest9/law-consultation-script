@@ -34,4 +34,5 @@ xmlstarlet ed --inplace -d "//@class" $Begut_tempname
 
 echo -e 'done Begut'
 
-diff -w -B --color $Begut_tempname $Regv_tempname
+diff -w -B $Begut_tempname $Regv_tempname > ./data/test.diff
+diffstat ./data/test.diff
