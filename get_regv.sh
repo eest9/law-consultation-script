@@ -1,13 +1,13 @@
 #!/bin/bash
 #parmeters for the RIS API
-Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred&Seitennummer=1'
+Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred'
 #Begut_par='?Applikation=Begut&DokumenteProSeite=Ten'
 
 #curl -o ./data/Regv_data.json 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Regv_par
 ii=1
 while [  $ii -lt 5 ]; do
 
-  curl -o './data/Regv_data-'$ii'.json' 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Regv_par
+  curl -o './data/Regv_data-'$ii'.json' 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Regv_par'&Seitennummer='$ii
 
   i=0
   while [  $i -lt 1 ]; do
