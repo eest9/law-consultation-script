@@ -2,7 +2,7 @@
 #parmeters for the RIS API
 Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred'
 
-mkdir ./data/regv/
+mkdir -p ./data/regv/
 
 for ii in $(seq 1 5); do
 
