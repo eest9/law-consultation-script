@@ -13,6 +13,8 @@ Begut_count=${Begut_count:1:(-1)}
 let Begut_count=($Begut_count/100)+1
 echo $Begut_count
 
+echo "Name;Short Name;Date;URL all;URL html" >> ./data/begut/Begut_sample.csv
+
 for ii in $(seq 1 $Begut_count); do
 
   #RIS API request for all
@@ -24,16 +26,18 @@ for ii in $(seq 1 $Begut_count); do
     #read all the titeles and uris of all the bills in the last legislativ periode
     Begut_name="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Bundesgesetzblaetter.Titel')"
     echo $Begut_name
+    Begut_name_short="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Bundesgesetzblaetter.Kurztitel')"
+    echo $Begut_name_short
     Begut_date="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Allgemein.Geaendert')"
     Begut_date=${Begut_date:1:(-1)}
     echo $Begut_date
     Begut_url_all="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Allgemein.DokumentUrl')"
     echo $Begut_url_all
-    Begut_url_pdf="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Dokumentliste.ContentReference[0].Urls.ContentUrl[1].Url')"
-    echo $Begut_url_pdf
+    Begut_url_html="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Dokumentliste.ContentReference[0].Urls.ContentUrl[1].Url')"
+    echo $Begut_url_html
 
     #write csv file
-    echo $Begut_name";"$Begut_date";"$Begut_url_all";"$Begut_url_pdf >> ./data/begut/Begut_sample.csv
+    echo $Begut_name";"$Begut_name_short";"$Begut_date";"$Begut_url_all";"$Begut_url_html >> ./data/begut/Begut_sample.csv
 
   done
 

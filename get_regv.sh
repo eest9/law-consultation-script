@@ -17,11 +17,11 @@ for ii in $(seq 1 5); do
     echo $Regv_name
     Regv_url_all="$(cat './data/regv/Regv_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Allgemein.DokumentUrl')"
     echo $Regv_url_all
-    Regv_url_pdf="$(cat './data/regv/Regv_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Dokumentliste.ContentReference[0].Urls.ContentUrl[1].Url')"
-    echo $Regv_url_pdf
+    Regv_url_html="$(cat './data/regv/Regv_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Dokumentliste.ContentReference[0].Urls.ContentUrl[1].Url')"
+    echo $Regv_url_html
 
     #write csv file
-    echo $Regv_name";"$Regv_url_all";"$Regv_url_pdf >> ./data/regv/RegV_sample.csv
+    echo $Regv_name";"$Regv_url_all";"$Regv_url_html >> ./data/regv/RegV_sample.csv
 
   done
 
