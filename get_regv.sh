@@ -4,11 +4,13 @@ Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-
 
 mkdir -p ./data/regv/
 
+#Get the 5 Datasets includet in the research object
 for ii in $(seq 1 5); do
 
   #RIS API request for all
   curl -o './data/regv/Regv_data-'$ii'.json' 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Regv_par'&Seitennummer='$ii
 
+  #Parse 1 of 100 Datasets
   for i in $(seq 0 99); do
     echo 'read and write Dataset number '$i' of side '$ii
 

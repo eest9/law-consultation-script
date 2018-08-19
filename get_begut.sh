@@ -5,21 +5,25 @@ Begut_par='?Applikation=Begut&DokumenteProSeite='
 
 mkdir -p ./data/begut/
 
+#Get and Parse the total number of Datasets
 curl -o './data/begut/Begut_data-count.json' 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Begut_par'Ten&Seitennummer=1'
-sed -i 's/#text/text/' ./data/begut/Begut_data-count.json
+sed -i 's/#text/text/' ./data/begut/Begut_data-count.json #jq can't parse "#"
 Begut_count="$(cat './data/begut/Begut_data-count.json' | jq '.OgdSearchResult.OgdDocumentResults.Hits.text')"
 echo $Begut_count
 Begut_count=${Begut_count:1:(-1)}
 let Begut_count=($Begut_count/100)+1
 echo $Begut_count
 
+#Titleline
 echo "Name;Short Name;Date;URL all;URL html" >> ./data/begut/Begut_sample.csv
 
+#Get all Datasets
 for ii in $(seq 1 $Begut_count); do
 
-  #RIS API request for all
+  #RIS API request for 100 Datasets
   curl -o './data/begut/Begut_data-'$ii'.json' 'https://data.bka.gv.at/ris/api/v2.5/bundesgesetzblaetter'$Begut_par'OneHundred&Seitennummer='$ii
 
+  #Parse 1 of 100 Datasets
   for i in $(seq 0 99); do
     echo 'read and write Dataset number '$i' of side '$ii
 

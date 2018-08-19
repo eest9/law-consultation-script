@@ -14,7 +14,7 @@ function save_law {
   curl -o $temp_law_filename".html" $temp_law_url
 
   echo 'convert html to text'
-  maxWidth=$(echo "2^(32-1)-1" | bc)
+  maxWidth=$(echo "2^(32-1)-1" | bc) #max with of cli for the html2text converter
   html2text -width $maxWidth -o $temp_law_filename".txt" $temp_law_filename".html"
 
   echo -e 'done temp_law_filename'
