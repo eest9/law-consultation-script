@@ -1,6 +1,5 @@
 #!/bin/bash
 #parmeters for the RIS API
-#Begut_par='?Applikation=Begut&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred'
 Begut_par='?Applikation=Begut&DokumenteProSeite='
 
 mkdir -p ./data/begut/

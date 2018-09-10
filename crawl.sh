@@ -8,6 +8,7 @@ function save_law {
 
   echo 'get data from '$temp_law_url
   curl -o $temp_law_filename".html" $temp_law_url
+#  wget -O $temp_law_filename".html" $temp_law_url
   echo 'save data to '$temp_law_filename
 
   echo 'convert html to text'
