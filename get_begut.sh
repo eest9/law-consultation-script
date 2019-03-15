@@ -10,6 +10,7 @@ sed -i 's/#text/text/' ./data/begut/Begut_data-count.json #jq can't parse "#"
 Begut_count="$(cat './data/begut/Begut_data-count.json' | jq '.OgdSearchResult.OgdDocumentResults.Hits.text')"
 echo $Begut_count
 Begut_count=${Begut_count:1:(-1)}
+#Begut_count=${Begut_count//\"}
 let Begut_count=($Begut_count/100)+1
 echo $Begut_count
 

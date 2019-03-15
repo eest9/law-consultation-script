@@ -1,6 +1,17 @@
 #!/bin/bash
 #parmeters for the RIS API
-Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred'
+#Regv_par='?Applikation=Regv&BeschlussdatumVon=2013-10-29&BeschlussdatumBis=2017-11-08&DokumenteProSeite=OneHundred'
+
+#check if parameters are valide ISO 8601 dates
+if [[ ! $1 == [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] ]]; then
+  echo "parameter 1 must be a date"
+  exit 1
+elif [[ ! $2 == [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] ]]; then
+  echo "parameter 2 must be a date"
+  exit 1
+fi
+
+Regv_par='?Applikation=Regv&BeschlussdatumVon='$1'&BeschlussdatumBis='$2'&DokumenteProSeite=OneHundred'
 
 mkdir -p ./data/regv/
 
