@@ -7,12 +7,17 @@
   - [crawl-quali.py] is used to make diffs of a certain set of bills
   - rest is garbage
 
+# requirements
+
+  - coming soon
+
+# usage
+## [get_regv.sh]
+This script requires 2 parameters. The first one is the start date and the seconde one the end date of the time frame you want to observe. Only ISO 8601 values are allowed.
+
+
 [get_begut.sh]: https://github.com/eest9/law-consultation-script/blob/master/get_begut.sh
 [get_regv.sh]: https://github.com/eest9/law-consultation-script/blob/master/get_regv.sh
 [crawl.py]: https://github.com/eest9/law-consultation-script/blob/master/crawl.py
 [count.py]: https://github.com/eest9/law-consultation-script/blob/master/count.py
 [crawl-quali.py]: https://github.com/eest9/law-consultation-script/blob/master/crawl-quali.py
-
-# requirements
-
-  - coming soon
