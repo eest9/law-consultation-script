@@ -9,9 +9,8 @@ curl -o './data/begut/Begut_data-count.json' 'https://data.bka.gv.at/ris/api/v2.
 sed -i 's/#text/text/' ./data/begut/Begut_data-count.json #jq can't parse "#"
 Begut_count="$(cat './data/begut/Begut_data-count.json' | jq '.OgdSearchResult.OgdDocumentResults.Hits.text')"
 echo $Begut_count
-Begut_count=${Begut_count:1:(-1)}
-#Begut_count=${Begut_count//\"}
-let Begut_count=($Begut_count/100)+1
+Begut_count=${Begut_count:1:(-1)} #delete quotation marks (first and last char)
+let Begut_count=($Begut_count/100)+1 
 echo $Begut_count
 
 #Titleline
@@ -33,7 +32,7 @@ for ii in $(seq 1 $Begut_count); do
     Begut_name_short="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Bundesgesetzblaetter.Kurztitel')"
     echo $Begut_name_short
     Begut_date="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Allgemein.Geaendert')"
-    Begut_date=${Begut_date:1:(-1)}
+    Begut_date=${Begut_date:1:(-1)} #delete quotation marks (first and last char)
     echo $Begut_date
     Begut_url_all="$(cat './data/begut/Begut_data-'$ii'.json' | jq '.OgdSearchResult.OgdDocumentResults.OgdDocumentReference['$i'].Data.Metadaten.Allgemein.DokumentUrl')"
     echo $Begut_url_all
